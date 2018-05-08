@@ -36,6 +36,13 @@ class tgb:
 
 
 
+	def setProxy(self, proxyAddress):
+		proxyHandler = urllib2.ProxyHandler({"https": proxyAddress})
+		proxyOpener = urllib2.build_opener(proxyHandler)
+		urllib2.install_opener(proxyOpener)
+
+
+
 	def makeApiRequest(self, apiUri, queryParams = None):
 		apiUri = apiUri.replace("%ID%", self.access_token)
 
