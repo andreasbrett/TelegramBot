@@ -52,11 +52,11 @@ class tgb:
 			return json.loads(response.decode("utf-8"))
 
 		except urllib2.HTTPError as e:
-			print "[HTTPError] " + e.code
+			print "[HTTPError] " + e.code + ", " + e.reason
 			return None
 		
 		except urllib2.URLError as e:
-			print "[URLError] " + e.args
+			print "[URLError] " + e.code + ", " + e.reason
 			return None
 
 
