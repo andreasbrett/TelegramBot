@@ -15,7 +15,13 @@ tgb = TelegramBot.tgb("ENTER-YOUR-ACCESS-TOKEN", "ENTER-YOUR-GLOBAL-CHAT-ID-HERE
 tgb.setProxy("http://THIS-IS-MY-PROXY-ADDRESS:THIS-IS-MY-PROXY-PORT")
 
 # send message to (globally defined) chat
-tgb.sendMessage("Hey there!\nI'm your new bot.")
+message_id = tgb.sendMessage("Hey there!\nI'm your new bot.")
 
 # send message to specific chat
-tgb.sendMessage("Hey there!\nI'm your new bot.", "ENTER-YOUR-CHAT-ID-HERE")
+message_id = tgb.sendMessage("Hey there!\nI'm your new bot.", "ENTER-YOUR-CHAT-ID-HERE")
+
+# delete message from (globally defined) chat
+tgb.deleteMessage(message_id)
+
+# delete message from specific chat
+tgb.deleteMessage(message_id, "ENTER-YOUR-CHAT-ID-HERE")
