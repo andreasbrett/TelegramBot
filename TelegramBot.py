@@ -51,7 +51,12 @@ class tgb:
 			# return json data
 			return json.loads(response.decode("utf-8"))
 
+		except urllib2.HTTPError as e:
+			print "[HTTPError] " + e.code
+			return None
+		
 		except urllib2.URLError as e:
+			print "[URLError] " + e.args
 			return None
 
 
