@@ -11,6 +11,9 @@ tgb_init.getUpdates()
 # create TelegramBot object
 tgb = TelegramBot.tgb("ENTER-YOUR-ACCESS-TOKEN", "ENTER-YOUR-GLOBAL-CHAT-ID-HERE")
 
+# if you're behind a proxy => set it
+tgb.setProxy("http://THIS-IS-MY-PROXY-ADDRESS:THIS-IS-MY-PROXY-PORT")
+
 # send message to (globally defined) chat
 tgb.sendMessage("Hey there!\nI'm your new bot.")
 
