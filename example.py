@@ -17,6 +17,9 @@ tgb.setProxy("http://THIS-IS-MY-PROXY-ADDRESS:THIS-IS-MY-PROXY-PORT")
 # send message to (globally defined) chat
 message_id = tgb.sendMessage("Hey there!\nI'm your new bot.")
 
+# send message to (globally defined) chat and store message_id in message store
+message_id = tgb.sendMessage("Hey there!\nI'm your new bot.", None, "ENTER-YOUR-MESSAGE-STORE.db")
+
 # send message to specific chat
 message_id = tgb.sendMessage("Hey there!\nI'm your new bot.", "ENTER-YOUR-CHAT-ID-HERE")
 
@@ -25,3 +28,6 @@ tgb.deleteMessage(message_id)
 
 # delete message from specific chat
 tgb.deleteMessage(message_id, "ENTER-YOUR-CHAT-ID-HERE")
+
+# clean up old messages (> 7 days) from (globally defined) chat
+tgb.cleanupMessages(7, "ENTER-YOUR-MESSAGE-STORE.db")
