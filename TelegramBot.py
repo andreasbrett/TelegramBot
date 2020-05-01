@@ -8,7 +8,10 @@
     :license: GNU General Public License v3.0, see LICENSE for more details
 """
 
-import urllib, urllib2, json, datetime, pickle, os
+import datetime, pickle, os
+import json
+import urllib.request
+import urllib.error
 
 class tgb:
 
@@ -33,7 +36,7 @@ class tgb:
 
 
 	def _jprint(self, oJson):
-		print json.dumps(oJson, indent=4, sort_keys=True)
+		print(json.dumps(oJson, indent=4, sort_keys=True))
 
 
 
@@ -42,22 +45,18 @@ class tgb:
 
 		# build request if queryParams are present
 		if queryParams:
-			apiUri = apiUri + "?%s" % urllib.urlencode(queryParams)
+			apiUri = apiUri + "?%s" % urllib.parse.urlencode(queryParams)
 
 		try:
 			# fetch response
-			request = urllib2.Request(apiUri)
-			response = urllib2.urlopen(request).read()
+			request = urllib.request.Request(apiUri)
+			response = urllib.request.urlopen(request).read()
 
 			# return json data
 			return json.loads(response.decode("utf-8"))
 
-		except urllib2.HTTPError as e:
-			print "Could not make API request. %r" % e
-			return None
-		
-		except urllib2.URLError as e:
-			print "Could not make API request. %r" % e
+		except urllib.error.HTTPError as e:
+			print("Could not make API request. %r" % e)
 			return None
 
 
@@ -115,9 +114,9 @@ class tgb:
 	#	* <string> proxyAddress = address of your proxy for https connections
 	# -----------------------------------------------------------------------------------
 	def setProxy(self, proxyAddress):
-		proxyHandler = urllib2.ProxyHandler({"https": proxyAddress})
-		proxyOpener = urllib2.build_opener(proxyHandler)
-		urllib2.install_opener(proxyOpener)
+		proxyHandler = urllib.request.ProxyHandler({"https": proxyAddress})
+		proxyOpener = urllib.request.build_opener(proxyHandler)
+		urllib.request.install_opener(proxyOpener)
 
 
 
@@ -230,3 +229,4 @@ class tgb:
 					return message_id
 			else:
 					return None
+    
